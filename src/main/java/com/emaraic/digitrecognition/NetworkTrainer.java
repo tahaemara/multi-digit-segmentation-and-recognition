@@ -22,7 +22,8 @@ import org.slf4j.LoggerFactory;
 
 import org.deeplearning4j.util.ModelSerializer;
 /**
- *
+ * I used an example from deeplearning4j to build this example (original autho agibsonccc)
+ * https://github.com/deeplearning4j/dl4j-examples/blob/master/dl4j-examples/src/main/java/org/deeplearning4j/examples/convolution/LenetMnistExample.java
  * @author Taha Emara
  * Website: http://www.emaraic.com
  * Email  : taha@emaraic.com
