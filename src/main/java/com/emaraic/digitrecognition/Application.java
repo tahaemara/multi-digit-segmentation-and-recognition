@@ -4,7 +4,6 @@ import com.emaraic.utils.RectComparator;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
-import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +46,7 @@ import static org.bytedeco.javacpp.opencv_imgproc.resize;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameConverter;
+import org.datavec.image.loader.NativeImageLoader;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -97,30 +97,14 @@ public class Application {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private static double[][] imageToMat(Mat digit) {
-        BufferedImage img = IplImageToBufferedImage(new IplImage(digit));
-        int width = img.getWidth();
-        int height = img.getHeight();
-        double[][] imgArr = new double[height][width];
-        Raster raster = img.getRaster();
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (raster.getSample(i, j, 0) >= 200) {
-                    imgArr[j][i] = 1.0;
-                } else {
-                    imgArr[j][i] = 0.0;
-                }
-            }
-        }
-        return imgArr;
-    }
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         Application app = new Application();
 
         /*Load iamge in grayscale mode*/
         IplImage image = cvLoadImage(IMAGEPATH, 0);
-        /*imwrite("samples/gray.jpg", new Mat(image)); // Save gray version of image*/ 
+        /*imwrite("samples/gray.jpg", new Mat(image)); // Save gray version of image*/
 
         /*Binarising Image*/
         IplImage binimg = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
@@ -153,18 +137,18 @@ public class Application {
                     cvPoint(boundbox.x() + boundbox.width(), boundbox.y() + boundbox.height()),
                     CV_RGB(0, 0, 0), 2, 0, 0);
         }
-        
+
         Mat result = new Mat(image);
         Collections.sort(rects, new RectComparator());
-        
+
         for (int i = 0; i < rects.size(); i++) {
             Rect rect = rects.get(i);
             Mat digit = new Mat(dilated).apply(rect);
             copyMakeBorder(digit, digit, 10, 10, 10, 10, BORDER_CONSTANT, new Scalar(0, 0, 0, 0));
             resize(digit, digit, new Size(28, 28));
-            double data[][] = imageToMat(digit);
-            INDArray ar = Nd4j.create(data);
-            INDArray flaten = ar.reshape(new int[]{1, 784});
+            NativeImageLoader loader = new NativeImageLoader(28, 28, 1);
+            INDArray dig = loader.asMatrix(digit);
+            INDArray flaten = dig.reshape(new int[]{1, 784});
             INDArray output = restored.output(flaten);
             /*for (int i = 0; i < 10; i++) {
             System.out.println("Probability of being " + i + " is " + output.getFloat(i));
