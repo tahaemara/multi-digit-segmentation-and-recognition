@@ -4,8 +4,8 @@ In this reposritory, I uploaded a code to segment multi-digit string and reconis
 
 **Dependencies:**
 
-- Javacv
-- Deeplearning4j
+- [Javacv](https://github.com/bytedeco/javacv)
+- [Deeplearning4j](https://deeplearning4j.org)
 
 
 **Input sample:**
