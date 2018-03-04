@@ -29,6 +29,8 @@ In this reposritory, I uploaded a code to segment multi-digit string and reconis
 
 **To run this project see this video**
 
+[https://www.youtube.com/watch?v=CDkdy3BwIqs](https://www.youtube.com/watch?v=CDkdy3BwIqs)
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/CDkdy3BwIqs/0.jpg)](https://www.youtube.com/watch?v=CDkdy3BwIqs)
 
 
