@@ -10,7 +10,7 @@ In this reposritory, I uploaded a code to segment multi-digit string and reconis
 
 **Input sample:**
 
-<img src="http://emaraic.com/assets/img/posts/machine-learning/digit-recognition/Sample3.jpg" alt="" data-canonical-src="http://emaraic.com/assets/img/posts/machine-learning/digit-recognition/Sample3.jpg" width="200" height="100" /> 
+<img src="http://emaraic.com/assets/img/posts/machine-learning/digit-recognition/sample3.jpg" alt="" data-canonical-src="http://emaraic.com/assets/img/posts/machine-learning/digit-recognition/sample3.jpg" width="200" height="100" /> 
 
 **Result:**
 
@@ -19,6 +19,11 @@ In this reposritory, I uploaded a code to segment multi-digit string and reconis
 **For more info**
 
 [http://emaraic.com/blog/multi-digit-segmentation-and-recognition](http://emaraic.com/blog/multi-digit-segmentation-and-recognition)
+
+**To run this project see this video**
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/CDkdy3BwIqs/0.jpg)](https://www.youtube.com/watch?v=CDkdy3BwIqs)
+
 
 **You can build Real apps using this code like (Mobile Scratch Card Digits Recognition)**
 
